@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Route;
 // Basiir
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\BlogController;
+use App\Http\Controllers\API\AchievementController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -35,4 +37,7 @@ Route::post('register', [AuthController::class, 'signup']);
      
 Route::middleware('auth:sanctum')->group( function () {
     Route::resource('blogs', BlogController::class);
+    
 });
+
+Route::resource('achievements', AchievementController::class);
