@@ -17,13 +17,8 @@ class AchievementFactory extends Factory
     public function definition()
     {
         return [
-            //
-            $factory->define(App\Achievement::class, function (Faker $faker) {
-                return [
-                    'name' => $faker->word,
-                    'description' => $faker->paragraph,
-                ];
-            });
+            'title' => fake()->word,
+            'description' => fake()->paragraph,
         ];
     }
 }

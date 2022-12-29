@@ -15,7 +15,7 @@ class AuthController extends BaseController
         if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){ 
             $authUser = Auth::user(); 
             $success['token'] =  $authUser->createToken('MyAuthApp')->plainTextToken; 
-            $success['name'] =  $authUser->name;
+            $success['username'] =  $authUser->username;
    
             return $this->sendResponse($success, 'User signed in');
         } 
@@ -26,9 +26,10 @@ class AuthController extends BaseController
     public function signup(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required',
+            'username' => 'required',
             'email' => 'required|email',
             'password' => 'required',
+            'avatar_id' => 'required',
             // 'confirm_password' => 'required|same:password',
         ]);
    

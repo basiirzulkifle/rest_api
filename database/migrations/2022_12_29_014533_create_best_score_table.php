@@ -13,10 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('achievement', function (Blueprint $table) {
-            $table->bigIncrements('achievement_id');
-            $table->string('title');
-            $table->text('description');
+        Schema::create('best_score', function (Blueprint $table) {
+            $table->bigIncrements('best_score_id');
+            $table->integer('best_score_value');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('user_id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('achievement');
+        Schema::dropIfExists('best_score');
     }
 };
