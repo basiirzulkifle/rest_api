@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Achievement extends Model
 {
     use HasFactory;
+    // protected $connection = 'mysql';
+    protected $table = 'achievement';
+    protected $fillable = [
+        'title',
+        'description'
+    ];
 }
