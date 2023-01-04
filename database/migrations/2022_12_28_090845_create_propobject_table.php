@@ -13,8 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('propobject', function (Blueprint $table) {
+        Schema::create('prop_objects', function (Blueprint $table) {
             $table->bigIncrements('propobject_id');
+            $table->integer('object_id');
             $table->string('object_name');
             $table->integer('object_value');
             $table->string('object_location');

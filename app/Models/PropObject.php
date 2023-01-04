@@ -9,10 +9,14 @@ class PropObject extends Model
 {
 
     use HasFactory;
+    protected $table = 'prop_objects';
+    protected $primaryKey = "propobject_id";
+
     protected $fillable = [
-        'title',
-        'description',
+        'object_id',
+        'object_name',
+        'object_value',
+        'object_location',
         'user_id',
-        'location'
     ];
 }

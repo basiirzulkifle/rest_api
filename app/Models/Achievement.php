@@ -9,6 +9,8 @@ class Achievement extends Model
 {
     use HasFactory;
     // protected $connection = 'mysql';
+    protected $primaryKey = "achievement_id";
+
     protected $table = 'achievement';
     protected $fillable = [
         'title',

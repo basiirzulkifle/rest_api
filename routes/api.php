@@ -18,26 +18,31 @@ use App\Http\Controllers\API\AchievementController;
 | routes are loaded by the RouteServiceProvider within a group which
 | is assigned the "api" middleware group. Enjoy building your API!
 |
+//Route::middleware('auth:sanctum')->group( function () {
+//    Route::resource('blogs', BlogController::class);
+//
+//});
+
 */
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-  
 
-  
+
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
 |--------------------------------------------------------------------------
 */
-  
-Route::post('login', [AuthController::class, 'signin']);
+
 Route::post('register', [AuthController::class, 'signup']);
-     
+Route::post('login', [AuthController::class, 'signin']);
+Route::get('getachievement',[\App\Http\Controllers\API\GetAchievementController::class, 'index']);
 Route::middleware('auth:sanctum')->group( function () {
-    Route::resource('blogs', BlogController::class);
-    
+//    Route::resource('blogs', BlogController::class);
+    Route::resource('propobject', \App\Http\Controllers\API\PropObjectController::class);
+    Route::resource('achievements', AchievementController::class);
 });
 
-Route::resource('achievements', AchievementController::class);

@@ -42,6 +42,7 @@ class AchievementController extends BaseController
     public function update(Request $request, Achievement $achievement)
     {
         $input = $request->all();
+        //dd($input);
         $validator = Validator::make($input, [
             'title' => 'required',
             'description' => 'required'

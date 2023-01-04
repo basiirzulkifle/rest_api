@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class Achievement extends JsonResource
+class GetAchievement extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,11 +16,9 @@ class Achievement extends JsonResource
     {
         // return parent::toArray($request); original
         return [
-            'id' => $this->achievement_id,
-            'title' => $this->title,
-            'description' => $this->description,
-            'created_at' => $this->created_at->format('m/d/Y'),
-            'updated_at' => $this->updated_at->format('m/d/Y'),
+            'user_id' => $this->user_id,
+            'achievement_id' => $this->achievement_id,
+
         ];
     }
 }
