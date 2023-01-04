@@ -40,6 +40,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('register', [AuthController::class, 'signup']);
 Route::post('login', [AuthController::class, 'signin']);
 Route::get('getachievement',[\App\Http\Controllers\API\GetAchievementController::class, 'index']);
+Route::get('getleaderboard',[\App\Http\Controllers\API\BestScoreController::class, 'index']);
 Route::middleware('auth:sanctum')->group( function () {
 //    Route::resource('blogs', BlogController::class);
     Route::resource('propobject', \App\Http\Controllers\API\PropObjectController::class);

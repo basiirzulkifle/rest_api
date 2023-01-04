@@ -19,6 +19,7 @@ class AuthController extends BaseController
             $success['token'] =  $authUser->createToken('MyAuthApp')->plainTextToken;
 
             $success['username'] =  $authUser->username;
+            $success['avatar_id'] =  $authUser->avatar_id;
 
             return $this->sendResponse($success, 'User signed in');
         }
@@ -66,7 +67,6 @@ class AuthController extends BaseController
         $success['email'] =  $user->email;
         $success['password'] =  $user->password;
         $success['avatar_id'] = $user->avatar_id;
-
 
         return $this->sendResponse($success, 'User created successfully.');
     }
