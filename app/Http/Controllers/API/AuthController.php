@@ -13,35 +13,36 @@ class AuthController extends BaseController
     public function signin(Request $request)
     {
 
-        if(Auth::attempt(['email' => $request->email, 'password' => $request->password])){
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             $authUser = Auth::user();
             //dd($authUser);
             $success['token'] =  $authUser->createToken('MyAuthApp')->plainTextToken;
 
             $success['username'] =  $authUser->username;
             $success['avatar_id'] =  $authUser->avatar_id;
+            $success['user_id'] =  $authUser->user_id;
+
 
             return $this->sendResponse($success, 'User signed in');
+        } else {
+            return $this->sendError('Unauthorised.', ['error' => 'Unauthorised']);
         }
-    else{
-        return $this->sendError('Unauthorised.', ['error'=>'Unauthorised']);
-    }
-//        $validator = Validator::make($request->all(), [
-//            'email' => 'required|email',
-//            'password' => 'required',
-//            // 'confirm_password' => 'required|same:password',
-//        ]);
-//
-//        if($validator->fails()){
-//            return $this->sendError('Error validation', $validator->errors());
-//        }
-//        if(!Auth::attempt($request->only(['email', 'password']))) {
-//            return $this->error('', 'Credentials do not match', 401);
-//        }
-//
-//        $user = User::where('email', $request->email)->first();
-//
-//        return $this->sendResponse($user, 'User signed in');
+        //        $validator = Validator::make($request->all(), [
+        //            'email' => 'required|email',
+        //            'password' => 'required',
+        //            // 'confirm_password' => 'required|same:password',
+        //        ]);
+        //
+        //        if($validator->fails()){
+        //            return $this->sendError('Error validation', $validator->errors());
+        //        }
+        //        if(!Auth::attempt($request->only(['email', 'password']))) {
+        //            return $this->error('', 'Credentials do not match', 401);
+        //        }
+        //
+        //        $user = User::where('email', $request->email)->first();
+        //
+        //        return $this->sendResponse($user, 'User signed in');
 
     }
     public function signup(Request $request)
@@ -55,7 +56,7 @@ class AuthController extends BaseController
             // 'confirm_password' => 'required|same:password',
         ]);
 
-        if($validator->fails()){
+        if ($validator->fails()) {
             return $this->sendError('Error validation', $validator->errors());
         }
 
@@ -70,5 +71,4 @@ class AuthController extends BaseController
 
         return $this->sendResponse($success, 'User created successfully.');
     }
-
 }
