@@ -68,6 +68,7 @@ class AuthController extends BaseController
         $success['email'] =  $user->email;
         $success['password'] =  $user->password;
         $success['avatar_id'] = $user->avatar_id;
+        $success['user_id'] =  $user->user_id;
 
         return $this->sendResponse($success, 'User created successfully.');
     }
