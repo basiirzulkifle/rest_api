@@ -14,7 +14,7 @@ class BestScoreController extends BaseController
     public function index()
     {
         $sums = DB::table('best_score')
-            ->select(DB::raw('sum(best_score.best_score_value) as sum , best_score.user_id, user.username as username'))
+            ->select(DB::raw('sum(best_score.best_score_value) as sum , best_score.user_id, users.username as username'))
             ->groupBy('user_id')
             ->orderBy('sum', 'desc')
             ->join('users', 'users.user_id', '=', 'best_score.user_id')
