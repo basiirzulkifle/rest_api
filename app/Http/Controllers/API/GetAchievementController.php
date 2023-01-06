@@ -7,6 +7,7 @@ use App\Http\Controllers\API\BaseController as BaseController;
 use Validator;
 use App\Models\GetAchievement;
 use App\Http\Resources\GetAchievement as GetAchievementResource;
+use Illuminate\Support\Facades\DB;
 
 class GetAchievementController extends BaseController
 {
@@ -31,18 +32,24 @@ class GetAchievementController extends BaseController
         return $this->sendResponse(new GetAchievementResource($achievement), 'Achievement created.');
     }
 
-    public function show($id)
+    public function show($user_id)
     {
+        $achievement = DB::table('link_user_achievement')
+            ->select('*')
+            ->where('user_id', '=', $user_id)
+            ->get();
 
+        if (is_null($achievement)) {
+            return $this->sendError('Post does not exist.');
+        }
+        return $this->sendResponse($achievement, 'Post fetched.');
     }
 
     public function update(Request $request, GetAchievementController $getAchievement)
     {
-
     }
 
     public function destroy(GetAchievementController $getAchievement)
     {
-
     }
 }
